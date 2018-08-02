@@ -45,10 +45,11 @@ function generatorInterface(columns, files) {
  * ${file.interfaceName}
  */
 interface ${file.interfaceName} {
-        `;
+
+`;
         columns.forEach(col => {
             if (col.TABLE_NAME === file.tableName) {
-                lines += `${col.COLUMN_NAME}?: ${getFieldType(col.DATA_TYPE)}; // ${col.COLUMN_COMMENT || col.COLUMN_NAME}`;
+                lines += `  ${col.COLUMN_NAME}?: ${getFieldType(col.DATA_TYPE)}; // ${col.COLUMN_COMMENT || col.COLUMN_NAME}\n`;
             }
         });
         lines += `

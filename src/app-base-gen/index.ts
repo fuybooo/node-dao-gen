@@ -80,15 +80,13 @@ function gen() {
 function getCommonNumberArray(num = 1000) {
     let numberArray = [];
     for (let i = 1; i <= num; i++) {
-        if (i % 2 === 0) {
-            numberArray.push(i);
-        }
+        numberArray.push(i);
     }
     return numberArray;
 }
 function getVerticalAlignNumberArray() {
     let numberArray = [];
-    for (let i = -20; i <= 20; i++) {
+    for (let i = -50; i <= 50; i++) {
         numberArray.push(i);
     }
     return numberArray;

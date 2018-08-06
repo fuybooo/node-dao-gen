@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/src/app.js",
+    "test": "node dist/test/dao/t-monster-menu-sql.js",
+    "start": "node dist/dao-gen/index.js",
     "base-less": "node dist/src/app-base-gen/index.js",
     "server": "supervisor dist/src/api/server.js"
   },

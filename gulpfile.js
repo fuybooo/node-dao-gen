@@ -7,3 +7,9 @@ gulp.task('default', function () {
         return tsProject.src().pipe(tsProject()).pipe(gulp.dest('dist'));
     });
 });
+gulp.task('dg', function () {
+    return gulp.watch(['src/dao-gen/index.ts', 'src/test/dao/t-monster-menu-sql.ts'], function () {
+        console.log('watch file changed...');
+        return tsProject.src().pipe(tsProject()).pipe(gulp.dest('dist'));
+    });
+});

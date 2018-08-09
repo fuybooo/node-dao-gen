@@ -1,0 +1,74 @@
+[
+  [
+    {
+      "label": "上级目录",
+      "field": "pid",
+      "validators": [
+        {
+          "type": "required"
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "label": "类型",
+      "field": "type",
+      "type": "select",
+      "selectList": "typeList",
+      "validators": [
+        {
+          "type": "required"
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "label": "名称",
+      "field": "name",
+      "validators": [
+        {
+          "type": "required"
+        },
+        {
+          "type": "maxlength",
+          "value": 10
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "label": "描述",
+      "field": "description",
+      "type": "textarea",
+      "validators": [
+        {
+          "type": "maxlength",
+          "value": 200
+        }
+      ]
+    }
+  ],
+  [
+    {
+      "label": "请求方式",
+      "field": "method",
+      "type": "select",
+      "selectList": "methodList"
+    }
+  ],
+  [
+    {
+      "label": "请求URL",
+      "field": "url"
+    }
+  ],
+  [
+    {
+      "label": "责任人",
+      "field": "liable"
+    }
+  ]
+]

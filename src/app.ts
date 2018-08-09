@@ -1,21 +1,29 @@
-import db from './db';
+import Db from './db';
 import config from './config';
 import * as fs from 'fs';
 import * as path from 'path';
 
 const daoGenerate = () => {
-    const connection = db.connect();
-    db.executeSql(connection, `
+    new Db(`
     select * from information_schema.columns where table_name in (
         SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = '${config.TABLE_SCHEMA}'
     ) and TABLE_SCHEMA = '${config.TABLE_SCHEMA}'
-`, (err, result) => {
-        if (!err) {
-            const files = getFiles(result);
-            generatorInterface(result, files);
-        }
+`, (data) => {
+        const files = getFiles(data);
+        generatorInterface(data, files);
     });
-    db.close(connection);
+//     const connection = db.connect();
+//     db.executeSql(connection, `
+//     select * from information_schema.columns where table_name in (
+//         SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = '${config.TABLE_SCHEMA}'
+//     ) and TABLE_SCHEMA = '${config.TABLE_SCHEMA}'
+// `, (err, result) => {
+//         if (!err) {
+//             const files = getFiles(result);
+//             generatorInterface(result, files);
+//         }
+//     });
+//     db.close(connection);
 };
 daoGenerate();
 

@@ -3,6 +3,7 @@ const config = {
     port: 3306,
     user: 'root',
     password: 'root',
+    connectionLimit: 10,
     TABLE_SCHEMA: 'f_monster',
     TABLE_SUFFIX: 't_monster_',
     genDaoPath: 'D:/fuybooo/WebstormProjects/node-dao-gen/src/dao-gen',

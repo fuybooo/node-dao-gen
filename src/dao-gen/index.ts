@@ -1,4 +1,4 @@
-import db from '../db';
+import Db from '../db';
 import config from '../config';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -8,18 +8,14 @@ daoGenerate();
  * 根据表自动生成实体类和拼接sql的类
  */
 function daoGenerate() {
-    const connection = db.connect();
-    db.executeSql(connection, `
+    new Db(`
     select * from information_schema.columns where table_name in (
         SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES where TABLE_SCHEMA = '${config.TABLE_SCHEMA}'
     ) and TABLE_SCHEMA = '${config.TABLE_SCHEMA}'
-`, (err, result) => {
-        if (!err) {
-            const files = getFiles(result);
-            generator(result, files);
-        }
+`, (data) => {
+        const files = getFiles(data);
+        generator(data, files);
     });
-    db.close(connection);
 }
 function getName(tableName) {
     return tableName.replace(config.TABLE_SUFFIX, '');
@@ -233,7 +229,9 @@ export default class ${file.mainName}Example {
     getOredCriteria() {
         return this.oredCriteria;
     }
-    getValue() {
+    getValue(onlyWhere = false) {
+        // 获取引号
+        const getQuote = item => typeof item === 'number' ? '' : \`'\`;
         let fields = this.getFields();
         if (fields.length === 0) {
             const ${file.dirName} = new ${file.mainName}();
@@ -243,7 +241,7 @@ export default class ${file.mainName}Example {
                 }
             }
         }
-        let value = \`select ` + '${' + `fields.join(',')} from ${file.tableName} where\`;
+        let value = onlyWhere ? ' where' : \`select ` + '${' + `fields.join(',')} from ${file.tableName} where\`;
         let orderByClause = '';
         if (this.isValid()) {
             const oredCriteria: Array<Criteria> = this.getOredCriteria();
@@ -260,18 +258,18 @@ export default class ${file.mainName}Example {
                     if (c.noValue) {
                         subValue += \` ` + '${' + `and}` + '${' + `c.condition}\`;
                     } else if (c.singleValue) {
-                        subValue += \` ` + '${' + `and}` + '${' + `c.condition} '` + '${' + `c.value}'\`
+                        subValue += \` ` + '${' + `and}` + '${' + `c.condition} ` + '${' + `getQuote(c.value)}` + '${' + `c.value}` + '${' + `getQuote(c.value)}\`
                     } else if (c.betweenValue) {
-                        subValue += \` ` + '${' + `and}` + '${' + `c.condition} ` + '${' + `c.value} and ` + '${' + `c.secondValue}\`
+                        subValue += \` ` + '${' + `and}` + '${' + `c.condition} ` + '${' + `getQuote(c.value)}` + '${' + `c.value}` + '${' + `getQuote(c.value)} and ` + '${' + `getQuote(c.secondValue)}` + '${' + `c.secondValue}` + '${' + `getQuote(c.secondValue)}\`
                     } else if (c.listValue) {
-                        subValue += \` ` + '${' + `and}` + '${' + `c.condition} (` + '${' + `c.value.map(item => \`'` + '${' + `item}'\`).join(', ')})\`
+                        subValue += \` ` + '${' + `and}` + '${' + `c.condition} (` + '${' + `c.value.map(item => \`` + '${' + `getQuote(item)}` + '${' + `item}` + '${' + `getQuote(item)}\`).join(', ')})\`
                     }
                 });
                 subValue += ' )' + (subI === oredCriteria.length - 1 ? '' : ' or');
                 value += subValue;
             });
         }
-        return value + ' order by ' + orderByClause +';';
+        return value + (orderByClause ? (' order by ' + orderByClause) : '') +';';
     }
 }
 `;

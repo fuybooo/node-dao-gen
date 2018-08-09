@@ -268,7 +268,9 @@ export default class UserExample {
     getOredCriteria() {
         return this.oredCriteria;
     }
-    getValue() {
+    getValue(onlyWhere = false) {
+        // 获取引号
+        const getQuote = item => typeof item === 'number' ? '' : `'`;
         let fields = this.getFields();
         if (fields.length === 0) {
             const user = new User();
@@ -278,7 +280,7 @@ export default class UserExample {
                 }
             }
         }
-        let value = `select ${fields.join(',')} from t_monster_user where`;
+        let value = onlyWhere ? ' where' : `select ${fields.join(',')} from t_monster_user where`;
         let orderByClause = '';
         if (this.isValid()) {
             const oredCriteria: Array<Criteria> = this.getOredCriteria();
@@ -295,17 +297,17 @@ export default class UserExample {
                     if (c.noValue) {
                         subValue += ` ${and}${c.condition}`;
                     } else if (c.singleValue) {
-                        subValue += ` ${and}${c.condition} '${c.value}'`
+                        subValue += ` ${and}${c.condition} ${getQuote(c.value)}${c.value}${getQuote(c.value)}`
                     } else if (c.betweenValue) {
-                        subValue += ` ${and}${c.condition} ${c.value} and ${c.secondValue}`
+                        subValue += ` ${and}${c.condition} ${getQuote(c.value)}${c.value}${getQuote(c.value)} and ${getQuote(c.secondValue)}${c.secondValue}${getQuote(c.secondValue)}`
                     } else if (c.listValue) {
-                        subValue += ` ${and}${c.condition} (${c.value.map(item => `'${item}'`).join(', ')})`
+                        subValue += ` ${and}${c.condition} (${c.value.map(item => `${getQuote(item)}${item}${getQuote(item)}`).join(', ')})`
                     }
                 });
                 subValue += ' )' + (subI === oredCriteria.length - 1 ? '' : ' or');
                 value += subValue;
             });
         }
-        return value + ' order by ' + orderByClause +';';
+        return value + (orderByClause ? (' order by ' + orderByClause) : '') +';';
     }
 }

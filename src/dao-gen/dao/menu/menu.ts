@@ -8,10 +8,11 @@ export default class Menu {
   public pid: number; // 父id，根节点的父id为0
   public name: string; // 名称
   public description: string; // 详细描述
-  public mark: string; // 备注
+  public tname: string; // 资源主表
   public url: string; // 接口路径
   public method: string; // 接口的方式
   public params: string; // 参数json串
+  public liable: string; // 责任人
   public res: string; // 返回结果json串
   public level: number; // 层级
   public sort: number; // 排序
@@ -24,10 +25,11 @@ export default class Menu {
               pid?: number,
               name?: string,
               description?: string,
-              mark?: string,
+              tname?: string,
               url?: string,
               method?: string,
               params?: string,
+              liable?: string,
               res?: string,
               level?: number,
               sort?: number,
@@ -38,10 +40,11 @@ export default class Menu {
     this.pid = pid;
     this.name = name;
     this.description = description;
-    this.mark = mark;
+    this.tname = tname;
     this.url = url;
     this.method = method;
     this.params = params;
+    this.liable = liable;
     this.res = res;
     this.level = level;
     this.sort = sort;

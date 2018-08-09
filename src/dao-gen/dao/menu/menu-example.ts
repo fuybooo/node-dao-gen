@@ -194,47 +194,47 @@ class Criteria {
     public andDescriptionNotBetween(value1: string, value2: string): Criteria {
         return this.addCriterion('description not between', value1, value2, false, false, true);
     }
-    public andMarkIsNull(): Criteria {
-        return this.addCriterion('mark is null');
+    public andTnameIsNull(): Criteria {
+        return this.addCriterion('tname is null');
     }
-    public andMarkIsNotNull(): Criteria {
-        return this.addCriterion('mark is not null');
+    public andTnameIsNotNull(): Criteria {
+        return this.addCriterion('tname is not null');
     }
-    public andMarkEqualTo(value: any): Criteria {
-        return this.addCriterion('mark =', value, null, false);
+    public andTnameEqualTo(value: any): Criteria {
+        return this.addCriterion('tname =', value, null, false);
     }
-    public andMarkNotEqualTo(value: any): Criteria {
-        return this.addCriterion('mark <>', value, null, false);
+    public andTnameNotEqualTo(value: any): Criteria {
+        return this.addCriterion('tname <>', value, null, false);
     }
-    public andMarkGreaterThan(value: any): Criteria {
-        return this.addCriterion('mark >', value, null, false);
+    public andTnameGreaterThan(value: any): Criteria {
+        return this.addCriterion('tname >', value, null, false);
     }
-    public andMarkGreaterThanOrEqualTo(value: any): Criteria {
-        return this.addCriterion('mark >=', value, null, false);
+    public andTnameGreaterThanOrEqualTo(value: any): Criteria {
+        return this.addCriterion('tname >=', value, null, false);
     }
-    public andMarkLessThan(value: any): Criteria {
-        return this.addCriterion('mark <', value, null, false);
+    public andTnameLessThan(value: any): Criteria {
+        return this.addCriterion('tname <', value, null, false);
     }
-    public andMarkLessThanOrEqualTo(value: any): Criteria {
-        return this.addCriterion('mark <=', value, null, false);
+    public andTnameLessThanOrEqualTo(value: any): Criteria {
+        return this.addCriterion('tname <=', value, null, false);
     }
-    public andMarkLike(value: any): Criteria {
-        return this.addCriterion('mark like', value, null, false);
+    public andTnameLike(value: any): Criteria {
+        return this.addCriterion('tname like', value, null, false);
     }
-    public andMarkNotLike(value: any): Criteria {
-        return this.addCriterion('mark not like', value, null, false);
+    public andTnameNotLike(value: any): Criteria {
+        return this.addCriterion('tname not like', value, null, false);
     }
-    public andMarkIn(values: any[]): Criteria {
-        return this.addCriterion('mark in', values, null, false, false, false, true);
+    public andTnameIn(values: any[]): Criteria {
+        return this.addCriterion('tname in', values, null, false, false, false, true);
     }
-    public andMarkNotIn(values: any[]): Criteria {
-        return this.addCriterion('mark not in', values, null, false, false, false, true);
+    public andTnameNotIn(values: any[]): Criteria {
+        return this.addCriterion('tname not in', values, null, false, false, false, true);
     }
-    public andMarkBetween(value1: string, value2: string): Criteria {
-        return this.addCriterion('mark between', value1, value2, false, false, true);
+    public andTnameBetween(value1: string, value2: string): Criteria {
+        return this.addCriterion('tname between', value1, value2, false, false, true);
     }
-    public andMarkNotBetween(value1: string, value2: string): Criteria {
-        return this.addCriterion('mark not between', value1, value2, false, false, true);
+    public andTnameNotBetween(value1: string, value2: string): Criteria {
+        return this.addCriterion('tname not between', value1, value2, false, false, true);
     }
     public andUrlIsNull(): Criteria {
         return this.addCriterion('url is null');
@@ -361,6 +361,48 @@ class Criteria {
     }
     public andParamsNotBetween(value1: string, value2: string): Criteria {
         return this.addCriterion('params not between', value1, value2, false, false, true);
+    }
+    public andLiableIsNull(): Criteria {
+        return this.addCriterion('liable is null');
+    }
+    public andLiableIsNotNull(): Criteria {
+        return this.addCriterion('liable is not null');
+    }
+    public andLiableEqualTo(value: any): Criteria {
+        return this.addCriterion('liable =', value, null, false);
+    }
+    public andLiableNotEqualTo(value: any): Criteria {
+        return this.addCriterion('liable <>', value, null, false);
+    }
+    public andLiableGreaterThan(value: any): Criteria {
+        return this.addCriterion('liable >', value, null, false);
+    }
+    public andLiableGreaterThanOrEqualTo(value: any): Criteria {
+        return this.addCriterion('liable >=', value, null, false);
+    }
+    public andLiableLessThan(value: any): Criteria {
+        return this.addCriterion('liable <', value, null, false);
+    }
+    public andLiableLessThanOrEqualTo(value: any): Criteria {
+        return this.addCriterion('liable <=', value, null, false);
+    }
+    public andLiableLike(value: any): Criteria {
+        return this.addCriterion('liable like', value, null, false);
+    }
+    public andLiableNotLike(value: any): Criteria {
+        return this.addCriterion('liable not like', value, null, false);
+    }
+    public andLiableIn(values: any[]): Criteria {
+        return this.addCriterion('liable in', values, null, false, false, false, true);
+    }
+    public andLiableNotIn(values: any[]): Criteria {
+        return this.addCriterion('liable not in', values, null, false, false, false, true);
+    }
+    public andLiableBetween(value1: string, value2: string): Criteria {
+        return this.addCriterion('liable between', value1, value2, false, false, true);
+    }
+    public andLiableNotBetween(value1: string, value2: string): Criteria {
+        return this.addCriterion('liable not between', value1, value2, false, false, true);
     }
     public andResIsNull(): Criteria {
         return this.addCriterion('res is null');
@@ -688,7 +730,9 @@ export default class MenuExample {
     getOredCriteria() {
         return this.oredCriteria;
     }
-    getValue() {
+    getValue(onlyWhere = false) {
+        // 获取引号
+        const getQuote = item => typeof item === 'number' ? '' : `'`;
         let fields = this.getFields();
         if (fields.length === 0) {
             const menu = new Menu();
@@ -698,7 +742,7 @@ export default class MenuExample {
                 }
             }
         }
-        let value = `select ${fields.join(',')} from t_monster_menu where`;
+        let value = onlyWhere ? ' where' : `select ${fields.join(',')} from t_monster_menu where`;
         let orderByClause = '';
         if (this.isValid()) {
             const oredCriteria: Array<Criteria> = this.getOredCriteria();
@@ -715,17 +759,17 @@ export default class MenuExample {
                     if (c.noValue) {
                         subValue += ` ${and}${c.condition}`;
                     } else if (c.singleValue) {
-                        subValue += ` ${and}${c.condition} '${c.value}'`
+                        subValue += ` ${and}${c.condition} ${getQuote(c.value)}${c.value}${getQuote(c.value)}`
                     } else if (c.betweenValue) {
-                        subValue += ` ${and}${c.condition} ${c.value} and ${c.secondValue}`
+                        subValue += ` ${and}${c.condition} ${getQuote(c.value)}${c.value}${getQuote(c.value)} and ${getQuote(c.secondValue)}${c.secondValue}${getQuote(c.secondValue)}`
                     } else if (c.listValue) {
-                        subValue += ` ${and}${c.condition} (${c.value.map(item => `'${item}'`).join(', ')})`
+                        subValue += ` ${and}${c.condition} (${c.value.map(item => `${getQuote(item)}${item}${getQuote(item)}`).join(', ')})`
                     }
                 });
                 subValue += ' )' + (subI === oredCriteria.length - 1 ? '' : ' or');
                 value += subValue;
             });
         }
-        return value + ' order by ' + orderByClause +';';
+        return value + (orderByClause ? (' order by ' + orderByClause) : '') +';';
     }
 }

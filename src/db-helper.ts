@@ -35,11 +35,9 @@ export default function execTrans(transactions: Transaction[] | Transaction | st
             } else {
                 transactionList = transactions;
             }
-            console.log(`开始执行事务：${transactionList.length}条sql需要执行。`);
             const results = [];
             const funcAry = transactionList.map((item: any, i: number) => {
                 return (cb) => {
-                    console.log(`开始执行第${i + 1}条`);
                     if (typeof item === 'string') {
                         item = {sql: item};
                     }
@@ -51,9 +49,23 @@ export default function execTrans(transactions: Transaction[] | Transaction | st
                             complete && complete(tErr);
                             throw tErr;
                         } else {
+                            console.log(`
+                    
+                    
+                    
+            第${i + 1}条sql
+                    
+                    ${item.sql}
+                    
+            的执行结果：
+                    
+                    ${JSON.stringify(data)}
+                    
+                    
+                    
+                    `);
                             results.push(data);
                             item.cb && item.cb(data);
-                            console.log(`第${i + 1}条执行成功`);
                             return cb(null, 'ok');
                         }
                     });

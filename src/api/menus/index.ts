@@ -4,16 +4,19 @@ import {insert, tableName} from './menu-mapper';
 import execTrans from '../../db-helper';
 import Menu from '../../dao-gen/dao/menu/menu';
 
-function doGet(req, res) {
-    const pid = util.getData(req, 'pid');
+function doGet(req, res, id = '') {
     const example = new MenuExample();
     const criteria = example.createCriteria();
-    criteria.andPidEqualTo(pid ? pid : 0);
-    const types = util.getData(req, 'type');
-    if (types) {
-        criteria.andTypeIn(types);
+    if (id) {
+        criteria.andIdEqualTo(id);
+        util.retObj(res, example.getValue());
+    } else {
+        const types = util.getData(req, 'type');
+        if (types) {
+            criteria.andTypeIn(types);
+        }
+        util.retList(res, example.getValue());
     }
-    util.ret(example.getValue(), res);
 }
 function doPost(req, res) {
     const params = util.getData(req);
@@ -23,8 +26,8 @@ function doPost(req, res) {
         `select max(sort) m from ${tableName} where pid = ${menu.pid}`,
         `select level from ${tableName} where id = ${menu.pid}`
     ], (err, data) => {
-        menu.sort = data[0][0].m + 1;
-        menu.level = data[1][0].level + 1;
+        menu.sort = data[0][0].m ? data[0][0].m + 1 : 1;
+        menu.level = data[1][0] ? data[1][0].level + 1 : 1;
 
         const example = new MenuExample();
         const criteria = example.createCriteria();
